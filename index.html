@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#ffc8d6">
+<title>Selamat Ulang Tahun ke-25, Fina! ♥</title>
+<meta name="description" content="Sebuah game kecil untuk Fina Dewi Oktarisa.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 11 10%22 shape-rendering=%22crispEdges%22%3E%3Cpath fill=%22%23ff5f73%22 d=%22M2 0h3v1h1V0h3v1h1v1h1v3h-1v1h-1v1H8v1H7v1H6v1H5V9H4V8H3V7H2V6H1V5H0V2h1V1h1z%22/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <button id="soundBtn" class="sound-btn" type="button" aria-label="Nyalakan / matikan suara"><span class="ico"></span><span class="lbl">OFF</span></button>
+
+  <!-- START -->
+  <section id="s-start" class="screen active sky-day" aria-label="Layar mulai">
+    <div class="deco" data-clouds="4" data-hearts="6"></div>
+    <div class="col center start-col">
+      <p class="tiny">sebuah game kecil untuk</p>
+      <h1 class="title"><span class="t1">LEVEL</span><span class="t2">25</span></h1>
+      <p class="subtitle">Fina Dewi Oktarisa</p>
+      <div class="duo">
+        <img class="spr boy" data-spr="boyDown0" alt="aku">
+        <img class="spr heart-beat" data-spr="heart" alt="">
+        <img class="spr girl" data-spr="girl" alt="Fina">
+      </div>
+      <button id="startBtn" class="pbtn start-btn" type="button"><span class="blink">▶</span> Tekan START</button>
+      <p class="hint">tekan tombol apa saja atau ketuk layar</p>
+      <p id="countdown" class="countdown"></p>
+    </div>
+    <div class="ground"></div>
+  </section>
+
+  <!-- MAP -->
+  <section id="s-map" class="screen map-screen" aria-label="Petualangan">
+    <div class="map-hud">
+      <div class="hearts" id="heartHud"></div>
+      <div class="map-tip" id="mapTip"></div>
+    </div>
+    <div class="stage" id="stage">
+      <canvas id="game" aria-label="Peta permainan"></canvas>
+      <div class="dialog pbox hidden" id="dialog" role="dialog" aria-live="polite">
+        <div class="dlg-title" id="dlgTitle"></div>
+        <div class="dlg-text" id="dlgText"></div>
+        <div class="dlg-next">▼</div>
+      </div>
+      <div class="key-hint">Panah / WASD: jalan &nbsp;·&nbsp; Spasi / Enter: lanjut &nbsp;·&nbsp; Klik peta: jalan ke situ</div>
+    </div>
+    <div class="controls" id="controls">
+      <div class="dpad" id="dpad" aria-label="Tombol arah">
+        <span class="dp up"></span><span class="dp down"></span><span class="dp left"></span><span class="dp right"></span><span class="dp mid"></span>
+      </div>
+      <div class="ctl-mid"><span>geser untuk jalan</span></div>
+      <button class="abtn" id="aBtn" type="button" aria-label="Lanjut">A</button>
+    </div>
+  </section>
+
+  <!-- GIFT -->
+  <section id="s-gift" class="screen sky-warm" aria-label="Kado">
+    <div class="deco" data-hearts="8"></div>
+    <div class="col center">
+      <h2 class="ptitle">Kado Buat Kamu!</h2>
+      <p class="say pbox" id="giftSay">Ketuk kadonya 3 kali buat buka!</p>
+      <div class="gift-wrap" id="giftWrap">
+        <div class="rays"></div>
+        <img class="gift-cake" id="giftCake" alt="">
+        <img class="spr gift-lid" id="giftLid" data-spr="giftLid" alt="">
+        <img class="spr gift-body" id="giftBody" data-spr="giftBody" alt="kado">
+      </div>
+      <button class="pbtn pink hidden" id="toCake" type="button">Lihat isinya ▶</button>
+    </div>
+  </section>
+
+  <!-- CAKE -->
+  <section id="s-cake" class="screen sky-dusk" aria-label="Kue ulang tahun">
+    <div class="deco" data-stars="18"></div>
+    <div class="col center">
+      <h2 class="ptitle">Make a wish dulu, ya!</h2>
+      <p class="say pbox" id="cakeSay">Pejamkan mata, ucapkan permohonanmu dalam hati... terus ketuk lilinnya buat niup!</p>
+      <div class="cake-wrap" id="cakeWrap">
+        <img class="spr cake-img" data-spr="cake" alt="kue">
+        <button class="candle" data-i="0" type="button" aria-label="Tiup lilin 2">
+          <img class="spr cimg" data-spr="candle2" alt="">
+          <span class="flame"><img class="spr f0" data-spr="flame0" alt=""><img class="spr f1" data-spr="flame1" alt=""></span>
+          <span class="smoke"><i></i><i></i><i></i></span>
+        </button>
+        <button class="candle" data-i="1" type="button" aria-label="Tiup lilin 5">
+          <img class="spr cimg" data-spr="candle5" alt="">
+          <span class="flame"><img class="spr f0" data-spr="flame0" alt=""><img class="spr f1" data-spr="flame1" alt=""></span>
+          <span class="smoke"><i></i><i></i><i></i></span>
+        </button>
+      </div>
+      <div class="row">
+        <button class="pbtn ghost" id="blowAll" type="button">Tiup semua</button>
+        <button class="pbtn pink hidden" id="toMsg" type="button">Buka surat ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MESSAGE -->
+  <section id="s-msg" class="screen scroll sky-lav" aria-label="Surat">
+    <div class="deco" data-hearts="6" data-stars="10"></div>
+    <div class="col msg-col">
+      <h2 class="ptitle">Surat Kecil Buat Fina</h2>
+      <div class="rpg pbox" id="msgBox" tabindex="0">
+        <div class="speaker"><div class="face pbox"><img class="spr" data-spr="boyHappy" alt="aku"></div><span class="name">Aku</span></div>
+        <div class="msg-body">
+          <div class="msg-text" id="msgText"></div>
+          <div class="msg-foot"><span id="msgPage">1/9</span><span class="dlg-next" id="msgArrow">▼</span></div>
+        </div>
+      </div>
+      <div class="letter pbox hidden" id="letter"></div>
+      <div class="row">
+        <button class="pbtn ghost" id="msgAll" type="button">Lihat semua</button>
+        <button class="pbtn pink" id="msgNext" type="button">Lanjut ▶</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="s-video" class="screen scroll sky-peach" aria-label="Kenangan">
+    <div class="deco" data-clouds="3"></div>
+    <div class="col vid-col">
+      <h2 class="ptitle">Kenangan Kita</h2>
+      <p class="say pbox">Beberapa potongan cerita kita. Pilih saluran, terus tonton pelan-pelan, ya!</p>
+      <div class="tv">
+        <img class="spr antenna" data-spr="antenna" alt="">
+        <div class="tv-body">
+          <div class="tv-screen" id="tvScreen">
+            <canvas id="tvStatic" width="96" height="72"></canvas>
+            <video id="tvVideo" controls playsinline webkit-playsinline preload="none"></video>
+            <iframe id="tvFrame" title="Video kenangan" allow="autoplay; fullscreen; encrypted-media" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            <div class="tv-osd" id="tvOsd">CH 01</div>
+            <button class="tv-play pbtn" id="tvPlay" type="button">▶ PUTAR</button>
+          </div>
+          <div class="tv-panel">
+            <button class="knob" id="chPrev" type="button" aria-label="Saluran sebelumnya">◀</button>
+            <div class="tv-label" id="tvLabel">Kenangan 01</div>
+            <button class="knob" id="chNext" type="button" aria-label="Saluran berikutnya">▶</button>
+          </div>
+          <div class="tv-grill"><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+      <a id="tvOpen" class="small-link" target="_blank" rel="noopener">Buka di Google Drive ↗</a>
+      <div class="tapes" id="tapes"></div>
+      <p class="note" id="vidNote"></p>
+      <p class="note credit">Musik di video kompilasi: "There is Romance" oleh Kevin MacLeod (incompetech.com), lisensi CC BY 4.0 — creativecommons.org/licenses/by/4.0/</p>
+      <button class="pbtn pink" id="toFinal" type="button">Lanjut ▶</button>
+    </div>
+  </section>
+
+  <!-- FINALE -->
+  <section id="s-final" class="screen sky-night" aria-label="Penutup">
+    <div class="deco" data-stars="30" data-hearts="8"></div>
+    <div class="col center final-col">
+      <h1 class="final-title" aria-label="Selamat Ulang Tahun ke-25, Fina!">
+        <span class="f1">Selamat Ulang Tahun</span>
+        <span class="f2">ke-25, Fina!</span>
+      </h1>
+      <div class="duo big">
+        <img class="spr boy hop" data-spr="boyHappy" alt="aku">
+        <img class="spr heart-beat" data-spr="heart" alt="">
+        <img class="spr girl hop2" data-spr="girlHappy" alt="Fina">
+      </div>
+      <p class="final-sub">27 Oktober 2026 · Fina Dewi Oktarisa</p>
+      <p class="final-love pbox">Makasih udah jadi bagian terindah dari perjalananku. Aku sayang kamu, sekarang dan seterusnya.</p>
+      <div class="row">
+        <button class="pbtn ghost" id="reread" type="button">Baca surat</button>
+        <button class="pbtn ghost" id="rewatch" type="button">Kenangan</button>
+        <button class="pbtn" id="replay" type="button">↺ Main lagi</button>
+      </div>
+    </div>
+    <div class="ground night"></div>
+  </section>
+
+  <canvas id="fx" aria-hidden="true"></canvas>
+  <div id="wipe" aria-hidden="true"></div>
+</div>
+<script src="js/config.js"></script>
+<script src="js/util.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/audio.js"></script>
+<script src="js/fx.js"></script>
+<script src="js/game.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
