@@ -188,7 +188,7 @@
       cakeWrap.classList.add('done');
       $('#blowAll').classList.add('hidden');
       setTimeout(() => { Sound.play('yay'); FX.show(5); }, 250);
-      $('#cakeSay').textContent = 'Yeay! Semoga semua permohonanmu terkabul, Fina!';
+      $('#cakeSay').textContent = 'Yeay! Semoga semua permohonanmu terkabul, Sayang!';
       setTimeout(() => $('#toMsg').classList.remove('hidden'), 700);
     }
   }

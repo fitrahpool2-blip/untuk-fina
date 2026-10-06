@@ -19,14 +19,14 @@ const VIDEOS = [
 ];
 
 /* Video kompilasi (diputar langsung di situs sebagai saluran pertama). */
-const COMPILATION = { src: 'assets/kompilasi.mp4?v=2', poster: 'assets/kompilasi-poster.jpg', title: 'Kompilasi: Perjalanan Kita' };
+const COMPILATION = { src: 'assets/kompilasi.mp4?v=3', poster: 'assets/kompilasi-poster.jpg?v=3', title: 'Kompilasi: Perjalanan Kita' };
 
 const DRIVE_FOLDER = 'https://drive.google.com/drive/folders/1zqob5DY9epDEJ3blkVOsc2NDaNPin5aT';
 
-const BIRTHDAY = { name: 'Fina', fullName: 'Fina Dewi Oktarisa', age: 25, y: 2026, m: 10, d: 27 };
+const BIRTHDAY = { name: 'Sayang', fullName: 'Fina Dewi Oktarisa', age: 25, y: 2026, m: 10, d: 27 };
 
 const INTRO_TEXT =
-  'Hai, Fina! Aku lagi nungguin kamu di ujung jalan. Sambil jalan ke sini, kumpulin 5 hati, ya. ' +
+  'Hai, Sayang! Aku lagi nungguin kamu di ujung jalan. Sambil jalan ke sini, kumpulin 5 hati, ya. ' +
   'Tiap hati nyimpen satu bagian dari cerita kita.';
 
 const CHAPTERS = [
@@ -43,12 +43,12 @@ const CHAPTERS = [
 ];
 
 const LETTER = [
-  'Fina sayang, selamat ulang tahun yang ke-25!',
+  'Sayaang, selamat ulang tahun yang ke-25!',
   'Hari ini aku pengin bilang beberapa hal yang mungkin jarang banget aku ucapin langsung. Jadi baca pelan-pelan, ya.',
   'Kalau aku lihat ke belakang, perjalanan kita ternyata udah panjang banget. Dari dua orang yang masih saling belajar kenal, sampai sekarang jadi dua orang yang bisa saling ngerti tanpa harus banyak ngomong.',
   'Kita udah ngelewatin banyak hal bareng. Hari-hari yang seru, hari-hari yang berat, tawa yang nggak ada habisnya, dan juga salah paham yang bikin kita belajar lagi. Nggak semuanya gampang, dan aku tahu aku juga nggak selalu sempurna.',
   'Tapi kamu selalu ada. Kamu sabar sama aku, kamu dengerin aku, dan kamu tetap memilih bertahan. Itu sesuatu yang nggak pernah aku anggap sepele.',
-  'Makasih ya, Fina. Makasih udah jadi tempat pulang yang paling nyaman. Makasih udah percaya sama aku, bahkan di saat aku sendiri ragu. Makasih buat semua kesabaran, perhatian, dan sayang yang kamu kasih, yang kadang belum bisa aku balas sebaik yang pantas kamu dapetin.',
+  'Makasih ya, Sayang. Makasih udah jadi tempat pulang yang paling nyaman. Makasih udah percaya sama aku, bahkan di saat aku sendiri ragu. Makasih buat semua kesabaran, perhatian, dan sayang yang kamu kasih, yang kadang belum bisa aku balas sebaik yang pantas kamu dapetin.',
   'Di umur 25 ini, aku harap kamu makin bahagia, makin sehat, dan semua hal baik yang kamu impiin pelan-pelan jadi nyata. Apa pun yang nanti datang, aku pengin tetap ada di samping kamu, tumbuh bareng kamu, dan nemenin kamu di level-level berikutnya.',
   'Selamat ulang tahun, sayangku. Aku sayang kamu, hari ini dan seterusnya.',
   'Dari aku, yang selalu sayang kamu ♥',

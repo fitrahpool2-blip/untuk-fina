@@ -1,4 +1,4 @@
-/* The walkable level: collect 5 hearts -> chapters -> gift near Fina. */
+/* The walkable level: collect 5 hearts -> chapters -> gift near the boy. */
 const Game = (() => {
   const T = 16, COLS = 28, ROWS = 20, WW = COLS * T, WH = ROWS * T;
   const cv = document.getElementById('game');
@@ -244,7 +244,7 @@ const Game = (() => {
         if (df < 22) {
           if (!nearNpc) {
             nearNpc = true;
-            if (collected < 5) openDialog('Eits!', `Sabar dulu, sayang. Hatinya baru ${collected} dari 5. Kumpulin semuanya dulu, ya, nanti aku kasih sesuatu.`);
+            if (collected < 5) openDialog('Eits!', `Sabar dulu, Sayang. Hatinya baru ${collected} dari 5. Kumpulin semuanya dulu, ya, nanti aku kasih sesuatu.`);
             else finish();
           }
         } else if (df > 30) nearNpc = false;
