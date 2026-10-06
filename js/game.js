@@ -13,7 +13,7 @@ const Game = (() => {
   const HEART_POS = [[10, 15], [6, 12], [8, 6], [17, 10], [20, 7]];
   const PLAZA = { x0: 21, y0: 1, x1: 26, y1: 5 };
   const POND = { x0: 15, y0: 13, x1: 18, y1: 16 };
-  const FINA = { x: 24 * T + 8, y: 2 * T + 14 };
+  const NPC = { x: 24 * T + 8, y: 2 * T + 14 }; // the boy waits here with the gift
   const GIFT = { x: 22 * T + 8, y: 3 * T + 10 };
   const GRASS = '#d4ecb0', GRASS_D = '#b5d98f', GRASS_L = '#e6f6c9';
   const SAND = '#f8deae', SAND_D = '#e4bd85', SAND_L = '#fff0d2';
@@ -21,7 +21,7 @@ const Game = (() => {
 
   let tiles, solid, bg;
   let scale = 2, vw = 320, vh = 180;
-  let player, cam, hearts, collected, giftShown, finished, target, stuck, nearFina, introShown;
+  let player, cam, hearts, collected, giftShown, finished, target, stuck, nearNpc, introShown;
   let running = false, raf = 0, last = 0, time = 0, parts = [];
   let dialogOpen = false, dialogCb = null, openedAt = 0;
   const keys = new Set(), pad = { x: 0, y: 0 };
@@ -113,7 +113,7 @@ const Game = (() => {
     player = { x: 2 * T + 8, y: 17 * T + 12, dir: 'down', moving: false, anim: 0 };
     hearts = HEART_POS.map(([x, y], i) => ({ x: x * T + 8, y: y * T + 12, got: false, i }));
     collected = 0; giftShown = false; finished = false; target = null; stuck = 0;
-    nearFina = false; introShown = false; parts = []; cam = null;
+    nearNpc = false; introShown = false; parts = []; cam = null;
     closeDialog(true);
     onHud(0);
     onTip('Kumpulin 5 hati buat buka cerita kita!');
@@ -172,7 +172,7 @@ const Game = (() => {
       const tx = Math.floor(px / T), ty = Math.floor(py / T);
       if (tx < 0 || ty < 0 || tx >= COLS || ty >= ROWS || solid[ty][tx]) return true;
     }
-    if (Math.abs(x - FINA.x) < 10 && Math.abs(y - FINA.y) < 6) return true;
+    if (Math.abs(x - NPC.x) < 10 && Math.abs(y - NPC.y) < 6) return true;
     return false;
   }
   const dist = (a, b) => Math.hypot(a.x - b.x, a.y - b.y);
@@ -189,14 +189,14 @@ const Game = (() => {
         giftShown = true;
         Sound.play('magic');
         sparkle(GIFT.x, GIFT.y - 6, 24);
-        onTip('Semua hati terkumpul! Samperin Fina di ujung jalan ♥');
+        onTip('Semua hati terkumpul! Samperin aku di ujung jalan ♥');
       }
     });
   }
   function finish() {
     if (finished) return;
     finished = true;
-    openDialog('Yeay!', 'Semua hati udah terkumpul, dan akhirnya aku sampai di kamu. Ada kado kecil buat kamu. Buka, yuk!', () => {
+    openDialog('Yeay!', 'Semua hati udah terkumpul, dan akhirnya kamu sampai juga di sini. Makasih udah jalan sejauh ini bareng aku. Ini, ada kado kecil buat kamu. Buka, yuk!', () => {
       Sound.play('open');
       onComplete();
     });
@@ -240,14 +240,14 @@ const Game = (() => {
     if (!dialogOpen && !finished) {
       for (const h of hearts) if (!h.got && Math.hypot(player.x - h.x, player.y - h.y) < 12) { collect(h); break; }
       if (!dialogOpen) {
-        const df = dist(player, FINA);
+        const df = dist(player, NPC);
         if (df < 22) {
-          if (!nearFina) {
-            nearFina = true;
-            if (collected < 5) openDialog('Eits!', `Hatinya baru ${collected} dari 5. Jelajahi jalannya dulu, ya. Ceritanya belum lengkap!`);
+          if (!nearNpc) {
+            nearNpc = true;
+            if (collected < 5) openDialog('Eits!', `Sabar dulu, sayang. Hatinya baru ${collected} dari 5. Kumpulin semuanya dulu, ya, nanti aku kasih sesuatu.`);
             else finish();
           }
-        } else if (df > 30) nearFina = false;
+        } else if (df > 30) nearNpc = false;
         if (giftShown && dist(player, GIFT) < 14) finish();
       }
     }
@@ -284,10 +284,10 @@ const Game = (() => {
       items.push({ y: GIFT.y, fn: () => { shadow(sx, sy, 12); ctx.drawImage(Sprites.get('giftSmall'), sx - 6, sy - 11 + bob); } });
     }
     {
-      const sx = FINA.x - ox, sy = FINA.y - oy, bob = ((time * 2) | 0) % 2;
-      items.push({ y: FINA.y, fn: () => {
+      const sx = NPC.x - ox, sy = NPC.y - oy, bob = ((time * 2) | 0) % 2;
+      items.push({ y: NPC.y, fn: () => {
         shadow(sx, sy, 12);
-        ctx.drawImage(Sprites.get(collected >= 5 ? 'girlHappy' : 'girl'), sx - 8, sy - 20 + bob);
+        ctx.drawImage(Sprites.get(collected >= 5 ? 'boyHappy' : 'boyDown0'), sx - 8, sy - 20 + bob);
         const hb = Math.round(Math.sin(time * 3) * 1.5);
         ctx.drawImage(Sprites.get('mini'), sx - 2, sy - 28 + hb);
       } });
@@ -295,9 +295,9 @@ const Game = (() => {
     {
       const p = player, f = p.moving ? (Math.floor(p.anim) % 4) : 0;
       let spr;
-      if (p.dir === 'down') spr = ['boyDown0', 'boyDown1', 'boyDown0', 'boyDown2'][f];
-      else if (p.dir === 'up') spr = ['boyUp0', 'boyUp1', 'boyUp0', 'boyUp2'][f];
-      else spr = (p.dir === 'right' ? 'boyR' : 'boyL') + (f % 2);
+      if (p.dir === 'down') spr = ['girlDown0', 'girlDown1', 'girlDown0', 'girlDown2'][f];
+      else if (p.dir === 'up') spr = ['girlUp0', 'girlUp1', 'girlUp0', 'girlUp2'][f];
+      else spr = (p.dir === 'right' ? 'girlR' : 'girlL') + (f % 2);
       const sx = Math.round(p.x) - ox, sy = Math.round(p.y) - oy, bob = p.moving && f % 2 ? -1 : 0;
       items.push({ y: p.y, fn: () => { shadow(sx, sy, 10); ctx.drawImage(Sprites.get(spr), sx - 8, sy - 20 + bob); } });
     }

@@ -19,14 +19,14 @@ const VIDEOS = [
 ];
 
 /* Video kompilasi (diputar langsung di situs sebagai saluran pertama). */
-const COMPILATION = { src: 'assets/kompilasi.mp4', poster: 'assets/kompilasi-poster.jpg', title: 'Kompilasi: Perjalanan Kita' };
+const COMPILATION = { src: 'assets/kompilasi.mp4?v=2', poster: 'assets/kompilasi-poster.jpg', title: 'Kompilasi: Perjalanan Kita' };
 
 const DRIVE_FOLDER = 'https://drive.google.com/drive/folders/1zqob5DY9epDEJ3blkVOsc2NDaNPin5aT';
 
 const BIRTHDAY = { name: 'Fina', fullName: 'Fina Dewi Oktarisa', age: 25, y: 2026, m: 10, d: 27 };
 
 const INTRO_TEXT =
-  'Ini aku, lagi jalan menuju kamu. Bantu aku kumpulin 5 hati di sepanjang jalan, ya. ' +
+  'Hai, Fina! Aku lagi nungguin kamu di ujung jalan. Sambil jalan ke sini, kumpulin 5 hati, ya. ' +
   'Tiap hati nyimpen satu bagian dari cerita kita.';
 
 const CHAPTERS = [
@@ -39,7 +39,7 @@ const CHAPTERS = [
   { title: 'Tawa Kecil',
     text: 'Yang paling aku syukuri justru momen-momen sederhana: ketawa sampai sakit perut, cerita random sampai lupa waktu, dan lihat kamu senyum. Hal kecil yang bikin hari-hariku hangat.' },
   { title: 'Sampai Hari Ini',
-    text: 'Perjalanan kita udah panjang, dan kamu tetap memilih bertahan. Buat aku, itu hadiah yang paling berharga. Sekarang giliran aku... yuk ke ujung jalan, ada kejutan kecil buat kamu!' },
+    text: 'Perjalanan kita udah panjang, dan kamu tetap memilih bertahan. Buat aku, itu hadiah yang paling berharga. Sekarang jalan sedikit lagi, ya... aku nungguin kamu di ujung jalan, ada kejutan kecil buat kamu!' },
 ];
 
 const LETTER = [

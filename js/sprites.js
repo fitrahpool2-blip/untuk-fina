@@ -82,6 +82,33 @@ const Sprites = (() => {
   set(girlHappy, 4, 8, 'e'); set(girlHappy, 6, 8, 'e');
   set(girlHappy, 10, 7, 'e'); set(girlHappy, 10, 8, 's'); set(girlHappy, 9, 8, 'e'); set(girlHappy, 11, 8, 'e');
 
+  // girl walking frames (front / back / side)
+  function walkGirlV(g, side) {
+    const c = clone(g);
+    if (side === 1) { set(c, 3, 19, '...'); set(c, 3, 18, 'kfk'); }
+    else { set(c, 10, 19, '...'); set(c, 10, 18, 'kfk'); }
+    return c;
+  }
+  const girlBack = clone(girl);
+  for (let y = 5; y <= 12; y++) set(girlBack, 1, y, 'HHHHHHHHHHHHHH');
+  set(girlBack, 4, 6, 'j'); set(girlBack, 11, 8, 'j'); set(girlBack, 6, 10, 'j');
+  set(girlBack, 2, 13, 'HHH'); set(girlBack, 11, 13, 'HHH');
+  // bow sits on the other side when seen from behind
+  set(girlBack, 10, 0, 'kk...'); set(girlBack, 10, 1, 'HHkk.'); set(girlBack, 10, 2, 'HjHHk');
+  set(girlBack, 1, 0, 'rr.rr'); set(girlBack, 1, 1, 'rrRrr'); set(girlBack, 1, 2, 'rr.rr');
+  const girlSideRows = [
+    '....kkkkkk......', '...kHHHHHHkk....', '..kHHjHHHHHHk...', '.kHHjHHHHHHHHk..',
+    '.kHHHHHHHHHHHk..', '.kHHHHHHHsHHsk..', '.kHHHHssssssssk.', '.kHHHssssssessk.',
+    '.kHHSssssssessk.', '.kHHsssssssspsk.', '.kHHksssssssmk..', '.kHHkkkkssskk...',
+    '.kHHkdddddwk....', '.kHkddddddddk...', '..kkdddsdddk....', '...kddDddDdk....',
+    '..kdddddddddk...', '..kkkkkkkkkkk...', '.....ksk.ksk....', '.....kfk.kfk....',
+  ];
+  const girlSide = grid(girlSideRows, 'girlSide');
+  set(girlSide, 2, 0, 'rr.rr'); set(girlSide, 2, 1, 'rrRrr'); set(girlSide, 2, 2, 'rr.rr');
+  const girlSide1 = clone(girlSide);
+  set(girlSide1, 0, 18, '....ksk..ksk....');
+  set(girlSide1, 0, 19, '...kfk....kfk...');
+
   /* ---------- HEART ---------- */
   const heartRows = [
     '..kkk.kkk..', '.krrrkrrrk.', 'krwwrrrrrrk', 'krwrrrrrrRk', 'krrrrrrrrRk',
@@ -205,6 +232,16 @@ const Sprites = (() => {
     cache.boyHappy = render(boyHappy);
     cache.girl = render(girl);
     cache.girlHappy = render(girlHappy);
+    cache.girlDown0 = cache.girl;
+    cache.girlDown1 = render(walkGirlV(girl, 1));
+    cache.girlDown2 = render(walkGirlV(girl, 2));
+    cache.girlUp0 = render(girlBack);
+    cache.girlUp1 = render(walkGirlV(girlBack, 1));
+    cache.girlUp2 = render(walkGirlV(girlBack, 2));
+    cache.girlR0 = render(girlSide);
+    cache.girlR1 = render(girlSide1);
+    cache.girlL0 = flip(cache.girlR0);
+    cache.girlL1 = flip(cache.girlR1);
     cache.heart = render(heart);
     cache.heartEmpty = render(heart, { r: '#f6e3e8', R: '#e8cbd4', w: '#ffffff', k: '#b98ea0' });
     cache.heartGold = render(heart, { r: '#ffd970', R: '#f2a541', w: '#fffbe6' });
