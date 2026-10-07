@@ -19,7 +19,7 @@ const VIDEOS = [
 ];
 
 /* Video kompilasi (diputar langsung di situs sebagai saluran pertama). */
-const COMPILATION = { src: 'assets/kompilasi.mp4?v=3', poster: 'assets/kompilasi-poster.jpg?v=3', title: 'Kompilasi: Perjalanan Kita' };
+const COMPILATION = { src: 'assets/kompilasi.mp4?v=4', poster: 'assets/kompilasi-poster.jpg?v=4', title: 'Kompilasi: Perjalanan Kita' };
 
 const DRIVE_FOLDER = 'https://drive.google.com/drive/folders/1zqob5DY9epDEJ3blkVOsc2NDaNPin5aT';
 
